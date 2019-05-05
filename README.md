@@ -1,7 +1,7 @@
 youtube-dl
 ==========
 
-[![Build Status](https://travis-ci.org/gwerlas/docker-youtube-dl.svg?branch=master)](https://travis-ci.org/gwerlas/docker-youtube-dl)
+[![Build Status](https://travis-ci.org/Gwerlas/docker-youtube-dl.svg?branch=master)](https://travis-ci.org/Gwerlas/docker-youtube-dl)
 
 What is youtube-dl
 ------------------
