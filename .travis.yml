@@ -1,0 +1,20 @@
+language: minimal
+
+sudo: required
+
+services:
+  - docker
+
+script:
+  - docker build --iidfile iid .
+  - docker run -t -v $(pwd)/goss.yaml:/goss.yaml $(cat iid) sh -c 'curl -fsSL https://goss.rocks/install | sh; goss validate'
+
+after_success:
+  - LATEST_VERSION=$(docker run gwerlas/docker-youtube-dl:latest youtube-dl --version)
+  - CURRENT_VERSION=$(docker run $(cat iid) youtube-dl --version)
+  - if [ $LATEST_VERSION != "$LATEST_VERSION" ]; then
+      docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      docker tag $(cat iid) gwerlas/docker-youtube-dl:$CURRENT_VERSION
+      docker tag $(cat iid) gwerlas/docker-youtube-dl:latest;
+      docker push gwerlas/docker-youtube-dl
+    fi
