@@ -7,7 +7,7 @@ services:
 
 script:
   - docker build --iidfile iid .
-  - docker run -t -v $(pwd)/goss.yaml:/goss.yaml --entrypoint /bin/sh $(cat iid) -c 'curl -fsSL https://goss.rocks/install | sh; goss validate'
+  - docker run -t -v $(pwd)/goss.yaml:/goss.yaml --entrypoint /bin/sh $(cat iid) -c 'apk add curl; curl -fsSL https://goss.rocks/install | sh; goss validate'
 
 after_success:
   - LATEST_VERSION=$(docker run gwerlas/docker-youtube-dl:latest youtube-dl --version)

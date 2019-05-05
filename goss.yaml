@@ -1,5 +1,5 @@
 command:
-  --help:
+  youtube-dl --help:
     exit-status: 0
     stdout:
       - youtube-dl
